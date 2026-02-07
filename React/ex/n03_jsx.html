@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <!--React js, DOM install-->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> <!--interactivity 원동력 -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script> <!--react element to html -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!--JSX to JS-->
+    <script type="text/babel">
+        const root = document.getElementById("root");
+
+        // JSX 사용
+        const Title = (
+            <h3 id="title" onMouseEnter={() => console.log("Mouse entered the h3!")}>
+                Hello, I'm h3 element
+            </h3>
+        );
+
+        const Button = (
+            <button 
+                onClick={() => console.log("Button clicked!")}
+                style={{ backgroundColor: "tomato" }}
+            >
+                Click me
+            </button>
+        )
+
+        // h3, btn rendering
+        const container = React.createElement("div", null, [Title, Button]);
+        ReactDOM.render(container, root);
+        
+    </script>
+</html>
