@@ -1,0 +1,49 @@
+<!--prop-types 사용 : 자료형, 필수 값, (기본 값) 지정-->
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function Btn({ text, fontSize = 14 }) {
+        return (
+            <button
+                style={{
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border: 0,
+                    borderRadius: "10px",
+                    fontSize,
+                    //fontSize: fontSize 둘이 이름이 같기 때문에 이렇게 사용 가능
+                }}
+            >
+                {text}
+            </button>
+        );
+    }
+    // PropTypes로 props 타입 지정
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+    };
+    function App() {
+        return (
+            <div>
+                <Btn text="Save Changes" fontSize={18} />
+                <Btn text={"Continue"} />
+            </div>
+        );
+    }
+
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+
+</script>
+
+</html>
