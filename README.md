@@ -9,7 +9,7 @@
 
 | 카테고리 | 설명 | 주요 내용 |
 | :--- | :--- | :--- |
-| **[Algorithm](./Algorithm/baekjoon)** | 백준 알고리즘 문제 풀이 | Java 풀이 및 상세 이론 정리 (`.java`, `.md`) |
+| **[Algorithm](./Algorithm/baekjoon)** | 알고리즘 문제 풀이 | Java 풀이 및 상세 이론 정리 (`.java`, `.md`) |
 | **[React](./React)** | 프런트엔드 라이브러리 학습 | React Hook, 컴포넌트 설계, 상태 관리 등 |
 | **[Crypto](./Crypto)** | 전자정부프레임워크 보안 설정 | `globals.properties` DB 정보 암호화 도구 |
 
