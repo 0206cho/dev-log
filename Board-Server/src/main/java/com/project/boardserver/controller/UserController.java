@@ -1,5 +1,6 @@
 package com.project.boardserver.controller;
 
+import com.project.boardserver.aop.LoginCheck;
 import com.project.boardserver.dto.UserDTO;
 import com.project.boardserver.dto.request.UserDeleteId;
 import com.project.boardserver.dto.request.UserLoginRequest;
@@ -111,11 +112,13 @@ public class UserController {
      * @return
      */
     @PatchMapping("password")
-    public ResponseEntity<LoginResponse> updateUserPassword(@RequestBody UserUpdatePasswordRequest userUpdatePasswordRequest,
+    @LoginCheck(type=LoginCheck.UserType.USER)
+    public ResponseEntity<LoginResponse> updateUserPassword(String accountId, @RequestBody UserUpdatePasswordRequest userUpdatePasswordRequest,
                                                             HttpSession session) {
         ResponseEntity<LoginResponse> responseEntity = null;
 
-        String id = SessionUtil.getLoginMemberId(session);
+        //String id = SessionUtil.getLoginMemberId(session);
+        String id = accountId;  // AOP
         String beforePassword = userUpdatePasswordRequest.getBeforePassword();
         String afterPassword = userUpdatePasswordRequest.getAfterPassword();
 
