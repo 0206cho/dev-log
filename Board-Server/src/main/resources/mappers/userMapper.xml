@@ -60,8 +60,8 @@
 
     <!-- 회원가입 -->
     <insert id="register" parameterType="com.project.boardserver.dto.UserDTO">
-        INSERT INTO user (userId, passWord, nickName, createTime, isWithDraw, status, updateTime)
-        VALUES (#{userId}, #{password}, #{nickName}, #{createTime}, #{isWithDraw}, #{status}, #{updateTime})
+        INSERT INTO user (userId, passWord, nickName, createTime, isWithDraw, status, updateTime, isAdmin)
+        VALUES (#{userId}, #{password}, #{nickName}, #{createTime}, #{isWithDraw}, #{status}, #{updateTime}, #{admin})
     </insert>
 
 </mapper>

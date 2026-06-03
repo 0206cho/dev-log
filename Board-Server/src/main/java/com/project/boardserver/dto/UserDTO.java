@@ -38,7 +38,7 @@ public class UserDTO {
     private String userId;
     private String password;
     private String nickName;
-    private boolean isAdmin;
+    private boolean admin;
     private Date createTime;
     private boolean isWithDraw;
     private Status status; // 사용자 상태

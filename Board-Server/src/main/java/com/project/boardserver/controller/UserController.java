@@ -141,7 +141,12 @@ public class UserController {
     @DeleteMapping
     public ResponseEntity<LoginResponse> deleteId(@RequestBody UserDeleteId userDeleteId, HttpSession session) {
         ResponseEntity<LoginResponse> responseEntity = null;
+        // user
         String id = SessionUtil.getLoginMemberId(session);
+        // admin
+        if (id == null) {
+            id = SessionUtil.getLoginAdminId(session);
+        }
 
         try {
             userService.deleteId(id, userDeleteId.getPassword());
