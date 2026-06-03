@@ -6,7 +6,10 @@
 <mapper namespace="com.project.boardserver.mapper.PostMapper">
 
     <!-- 게시글 등록 -->
-    <insert id="register" parameterType="com.project.boardserver.dto.PostDTO">
+    <insert id="register" parameterType="com.project.boardserver.dto.PostDTO" >
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO post (name, isAdmin, contents, createTime, views, categoryId, userId, fileId, updateTime )
         VALUES (#{name}, #{admin}, #{contents}, #{createTime}, #{views}, #{categoryId}, #{userId}, #{fileId}, #{updateTime})
     </insert>

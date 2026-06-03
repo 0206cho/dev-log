@@ -1,15 +1,12 @@
 package com.project.boardserver.mapper;
 
-import com.project.boardserver.dto.PostDTO;
-import com.project.boardserver.dto.request.PostSearchRequest;
+import com.project.boardserver.dto.TagDTO;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * description    :
  * packageName    : com.project.boardserver.mapper
- * fileName        : PostSearchMapper
+ * fileName        : TagMapper
  * author         : kimminsol
  * date           : 2026. 6. 3.
  * ===========================================================
@@ -18,8 +15,9 @@ import java.util.List;
  * 2026. 6. 3.        kimminsol       최초 생성
  */
 @Mapper
-public interface PostSearchMapper {
-    public List<PostDTO> selectPosts(PostSearchRequest postSearchRequest);
-
-    List<PostDTO> getPostByTag(String tagName);
+public interface TagMapper {
+    public int register(TagDTO tagDTO);
+    public void update(TagDTO tagDTO);
+    public void delete(int tagId);
+    public void createPostTag(Integer tagId, Integer postId); // 태그 - 게시글 매핑
 }

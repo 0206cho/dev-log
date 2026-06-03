@@ -2,13 +2,10 @@ package com.project.boardserver.dto;
 
 import lombok.*;
 
-import java.util.Date;
-import java.util.List;
-
 /**
  * description    :
  * packageName    : com.project.boardserver.dto
- * fileName        : PostDTO
+ * fileName        : CommentDTO
  * author         : kimminsol
  * date           : 2026. 6. 3.
  * ===========================================================
@@ -22,16 +19,9 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostDTO {
+public class CommentDTO {
     private int id;
-    private String name;
-    private int admin;
+    private int postId;
     private String contents;
-    private Date createTime;
-    private int views;
-    private int categoryId;
-    private int userId;
-    private int fileId;
-    private Date updateTime;
-    private List<TagDTO> tagDTOList;
+    private int subCommentId;   // 대댓글
 }
