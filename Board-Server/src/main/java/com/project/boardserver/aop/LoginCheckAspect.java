@@ -63,7 +63,7 @@ public class LoginCheckAspect {
 
         // 4. 만약 세션에서 꺼낸 ID가 null이라면? -> 로그인이 안 되어 있거나 권한이 없는 상태
         if (id == null) {
-            log.debug(proceedingJoinPoint.toString() + " accountName :" + id);
+            log.info(proceedingJoinPoint.toString() + " accountName :" + id);
             // 401 Unauthorized 에러와 함께 예외를 던져서 메서드 실행을 강제로 막아버림
             throw new HttpStatusCodeException(HttpStatus.UNAUTHORIZED, "로그인한 id값을 확인해주세요.") {};
         }
