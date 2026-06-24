@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <!--React js, DOM install-->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> <!--interactivity 원동력 -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script> <!--react element to html -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!--JSX to JS-->
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        
+
+        function App () {
+            let [counter, setCounter] = React.useState(0);
+
+            const onclick = () =>{
+                /*
+                counter += 1;
+                ReactDOM.render(<App/>, root);
+                */
+                // 위 주석과 동일
+                setCounter(counter + 1);
+
+            };
+            return (
+                <div>
+                    <h3>Total clicks: {counter}</h3>
+
+                    <button onClick={onclick}>Click me</button>
+                </div>
+            );
+        }
+        ReactDOM.render(<App/>, root);
+        
+    </script>
+</html>

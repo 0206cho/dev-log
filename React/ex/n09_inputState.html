@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <!--React js, DOM install-->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script> 
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+       <!-- <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> 
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // 단위 변환기
+        // 시간 : 분 -> 시간
+        function App () {
+            const [minutes, setMinutes] = React.useState("");
+            const onChange = (event) => {
+                setMinutes(event.target.value);
+            }
+            const [hours, setHours] = React.useState("");
+            return (
+                <div>
+                    <h1 className="hi">Super Converter</h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input 
+                        value={minutes} 
+                        id="minutes" 
+                        placeholder="Minutes" 
+                        type="number"
+                        onChange={onChange}
+                    />
+                    <h4>You want to convert {minutes}</h4>
+                    <label htmlFor="hours">Hours</label>
+                    <input id="hours" placeholder="Hours" type="number"/>
+                </div>
+            );
+        }
+        const root = document.getElementById("root");
+        ReactDOM.render(<App/>, root);
+        
+    </script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <!--React js, DOM install-->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script> 
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+       <!-- <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> 
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // 단위 변환기
+        function App () {
+            const [amount, setAmount] = React.useState(0); // 분, 초 상태
+            const [flipped, setFlipped] = React.useState(false); 
+            // minutes 상태 변경
+            const onChange = (event) => {
+                setAmount(event.target.value);
+            }
+            // flipped 상태 변경 / t -> f / f -> t
+            //const onFlip = () => setFlipped(!flipped); 
+            const onFlip = () => {
+                reset();
+                setFlipped((current) => !current); 
+            }
+            
+            const [hours, setHours] = React.useState(0);
+            const reset = () => setAmount(0);
+            return (
+                <div>
+                    <h1 className="hi">Super Converter</h1>
+                    <div>
+                        <label htmlFor="minutes">Minutes</label>
+                        <input 
+                            value={flipped ? amount * 60 :amount}
+                            id="minutes" 
+                            placeholder="Minutes" 
+                            type="number"
+                            onChange={onChange}
+                            // disabled={flipped === true}
+                            disabled={flipped}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="hours">Hours</label>
+                        <input 
+                            value={flipped ? amount : Math.round(amount / 60)}
+                            id="hours" 
+                            placeholder="Hours" 
+                            type="number"
+                            //disabled={flipped === false}
+                            disabled={!flipped}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onFlip}>Flip</button>
+                </div>
+            );
+        }
+        const root = document.getElementById("root");
+        ReactDOM.render(<App/>, root);
+        
+    </script>
+</html>
