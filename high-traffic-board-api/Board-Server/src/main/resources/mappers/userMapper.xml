@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boardserver.mapper.UserProfileMapper">
+
+    <!-- 사용자 정보 조회 -->
+    <select id="getUserProfile" resultType="com.project.boardserver.dto.UserDTO">
+        SELECT id, userId, password, nickName, createTime, isWithDraw, status
+        FROM user
+        WHERE userId = #{id}
+    </select>
+
+    <!-- 사용자 정보 수정 -->
+    <update id="updateUserProfile" parameterType="com.project.boardserver.dto.UserDTO">
+        UPDATE user
+        SET password=#{password},
+            nickName=#{nickName},
+            isWithDraw=#{isWithDraw},
+            status=#{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 사용자 삭제 -->
+    <delete id="deleteUserProfile">
+        DELETE
+        FROM user
+        WHERE userId = #{id}
+    </delete>
+
+    <!-- 로그인 -->
+    <select id="findByIdAndPassword" resultType="com.project.boardserver.dto.UserDTO">
+        SELECT id,
+               userId,
+               passWord,
+               nickName,
+               createTime,
+               isWithDraw,
+               status
+        FROM user
+        WHERE userId = #{id}
+          AND passWord = #{password}
+          AND status != 'DELETE'
+    </select>
+
+    <!-- id 중복 확인-->
+    <select id="idCheck" resultType="int">
+        SELECT COUNT(id)
+        FROM user
+        WHERE userId = #{id}
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="updatePassword" parameterType="com.project.boardserver.dto.UserDTO">
+        UPDATE user
+        SET passWord = #{password}
+        WHERE userId = #{userId}
+    </update>
+
+    <!-- 회원가입 -->
+    <insert id="register" parameterType="com.project.boardserver.dto.UserDTO">
+        INSERT INTO user (userId, passWord, nickName, createTime, isWithDraw, status, updateTime, isAdmin)
+        VALUES (#{userId}, #{password}, #{nickName}, #{createTime}, #{isWithDraw}, #{status}, #{updateTime}, #{admin})
+    </insert>
+
+</mapper>

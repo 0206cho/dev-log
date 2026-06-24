@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boardserver.mapper.PostSearchMapper">
+
+    <select id="selectPosts" resultType="com.project.boardserver.dto.PostDTO">
+        SELECT `id`,
+        `name`,
+        `isAdmin`,
+        `contents`,
+        `createTime`,
+        `views`,
+        `categoryId`,
+        `userId`,
+        `fileId`,
+        `updateTime`
+        FROM `post`
+        WHERE 1=1
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="contents != null and contents != ''">
+            AND contents LIKE CONCAT('%', #{contents}, '%')
+        </if>
+        <if test="categoryId != 0">
+            AND categoryId = #{categoryId}
+        </if>
+
+        <if test="sortStatus != null">
+            <choose>
+                <when test="sortStatus.name() == 'NEWEST'">
+                    ORDER BY createTime DESC
+                </when>
+                <when test="sortStatus.name() == 'OLDEST'">
+                    ORDER BY createTime ASC
+                </when>
+                <when test="sortStatus.name() == 'CATEGORIES'">
+                    ORDER BY categoryId ASC
+                </when>
+                <otherwise>
+                    ORDER BY createTime DESC </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <!-- 게시글 조회 - 태그 -->
+    <select id="getPostByTag" resultType="com.project.boardserver.dto.request.PostSearchRequest">
+        SELECT p.`id`,
+            p.`name`,
+            p.`isAdmin`,
+            p.`contents`,
+            p.`createTime`,
+            p.`views`,
+            p.`categoryId`,
+            p.`userId`,
+            p.`fileId`,
+            p.`updateTime`
+        FROM post p
+            JOIN  posttag pt ON p.id = pt.postId
+            JOIN tag t ON pt.tagId = t.id
+        WHERE t.name = {tagName}
+    </select>
+</mapper>
